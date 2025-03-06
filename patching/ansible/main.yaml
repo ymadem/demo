@@ -1,0 +1,11 @@
+---
+- name: Main Playbook
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Run installation tasks
+      import_playbook: installation.yml
+
+    - name: Run shutdown and startup tasks
+      import_playbook: shutdown_startup_script.yml

@@ -36,3 +36,9 @@
         disallow_root_login_remotely: yes
         remove_test_db: yes
         state: present
+    
+    - name: Install git
+      ansible.builtin.yum:
+        name: git
+        state: present
+      when: ansible_os_family == "RedHat"
