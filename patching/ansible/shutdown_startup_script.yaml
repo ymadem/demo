@@ -28,9 +28,9 @@
         src: "{{ item.src }}" 
         dest: "{{ item.dest }}"
       loop:
-        - src: /{{ ansible_user }}/temp/apps/{{ appname }}/{{ appname }}_shutdown.sh
+        - src: /{{ ansible_user }}/temp/ansible/apps/{{ appname }}/{{ appname }}_shutdown.sh
           dest: /{{ ansible_user }}/cibc/
-        - src: /{{ ansible_user }}/temp/apps/{{ appname }}/{{ appname }}_startup.sh
+        - src: /{{ ansible_user }}/temp/ansible/apps/{{ appname }}/{{ appname }}_startup.sh
           dest: /{{ ansible_user }}/cibc/
       
     - name: Set executable permissions for multiple files
