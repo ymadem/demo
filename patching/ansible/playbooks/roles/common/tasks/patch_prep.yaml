@@ -19,9 +19,9 @@
     dest: "{{ item.dest }}"
     remote_src: yes
   loop:
-    - src: /{{ ansible_user }}/temp/patching/ansible/playbooks/apps/{{ appname }}/{{ appname }}_shutdown.sh
+    - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_shutdown.sh
       dest: /{{ ansible_user }}/company/{{ appname }}
-    - src: /{{ ansible_user }}/temp/patching/ansible/playbooks/apps/{{ appname }}/{{ appname }}_startup.sh
+    - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_startup.sh
       dest: /{{ ansible_user }}/company/{{ appname }}
 
 - name: Set executable permissions for multiple files
