@@ -1,3 +1,4 @@
 ---
-- debug:
-    msg: "patching {{ ansible_hosts }}"
+- name: executing patch apply
+  debug:
+    msg: "patch applyed on server: {{ansible_host }}"
