@@ -12,7 +12,7 @@
     repo: 'https://github.com/ymadem/patching'
     dest: /{{ ansible_user }}/temp
     version: main
-    update: ye
+    update: yes
 - name: Copy shutdown and startup scripts to destination directory
   copy: 
     src: "{{ item.src }}" 
