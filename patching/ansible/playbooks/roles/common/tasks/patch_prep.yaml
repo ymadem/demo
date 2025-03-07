@@ -14,19 +14,20 @@
     version: main
     update: yes
 - name: Copy shutdown and startup scripts to destination directory
-  copy: 
-    src: "{{ item.src }}" 
+  copy:
+    src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    remote_src: yes
   loop:
-    - src: /{{ ansible_user }}/temp/ansible/apps/{{ appname }}/{{ appname }}_shutdown.sh
-      dest: /{{ ansible_user }}/company/
-    - src: /{{ ansible_user }}/temp/ansible/apps/{{ appname }}/{{ appname }}_startup.sh
-      dest: /{{ ansible_user }}/company/
-  
+    - src: /{{ ansible_user }}/temp/patching/ansible/playbooks/apps/{{ appname }}/{{ appname }}_shutdown.sh
+      dest: /{{ ansible_user }}/company/{{ appname }}
+    - src: /{{ ansible_user }}/temp/patching/ansible/playbooks/apps/{{ appname }}/{{ appname }}_startup.sh
+      dest: /{{ ansible_user }}/company/{{ appname }}
+
 - name: Set executable permissions for multiple files
   file:
     path: "{{ item }}"
     mode: '0755'
   loop:
-    - /{{ ansible_user }}/company/{{ appname }}_shutdown.sh
-    - /{{ ansible_user }}/company/{{ appname }}_startup.s
+    - /{{ ansible_user }}/company/{{ appname }}/{{ appname }}_shutdown.sh
+    - /{{ ansible_user }}/company/{{ appname }}/{{ appname }}_startup.sh
