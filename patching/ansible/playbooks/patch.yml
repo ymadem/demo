@@ -1,0 +1,9 @@
+---
+
+- name: main playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: import common projects
+      include_role:
+        name: common

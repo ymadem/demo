@@ -1,0 +1,38 @@
+---
+- name: Install Apache and MySQL on CentOS
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable Apache service
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Install MySQL (MariaDB)
+      yum:
+        name: mariadb-server
+        state: present
+
+    - name: Start and enable MySQL service
+      systemd:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Secure MySQL installation
+      mysql_secure_installation:
+        login_user: root
+        login_password: ''
+        user: root
+        password: 'new_password'
+        delete_anonymous_users: yes
+        disallow_root_login_remotely: yes
+        remove_test_db: yes
+        state: present
