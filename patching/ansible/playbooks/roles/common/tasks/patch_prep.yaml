@@ -10,17 +10,20 @@
 
 - name: Ensure the directory exists
   file:
-    path: "/etc/company/{{ item }}"
+    path: "/etc/company/{{ item.name }}"
     state: directory
     mode: '0755'
   with_items: "{{ apps }}"
 
-# - name: Clone the repository
-#   ansible.builtin.git:
-#     repo: '{{{{ appname }}.github_app_url }}'
-#     dest: /{{ ansible_user }}/temp
-#     version: main
-#     update: yes
+- name: Clone the repository
+  ansible.builtin.git:
+    repo: '{{ item.script_source }}'
+    dest: /{{ ansible_user }}/temp/{{ item.name }}
+    version: main
+    update: yes
+  with_items: "{{ apps }}"
+  when: item.script_source is regex('^http.*')
+
 # - name: Copy shutdown and startup scripts to destination directory
 #   copy:
 #     src: "{{ item.src }}"

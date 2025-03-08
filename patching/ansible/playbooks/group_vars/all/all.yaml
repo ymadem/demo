@@ -4,21 +4,24 @@
 # apache start
 
 apps:
-  ap-lms1d-1:
-    github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/shutdown.sh
-    stop_script_path: scripts/start.sh
-    validate_script_path: scripts/validate.sh
+  -
+    name: ap-lms1d-1
+    script_source: https://github.com/ymadem/app_s
+    start_script_path: scripts/app_s_shutdown.sh
+    stop_script_path: scripts/app_s_start.sh
+    validate_script_path: scripts/app_s_validate.sh
     seq: 1
-  ap-lms1d-2:
-    github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/shutdown.sh
-    stop_script_path: scripts/start.sh
-    validate_script_path: scripts/validate.sh
+  - 
+    name: ap-lms1d-2
+    script_source: https://github.com/ymadem/app_s
+    start_script_path: scripts/app_s_shutdown.sh
+    stop_script_path: scripts/app_s_start.sh
+    validate_script_path: scripts/app_s_validate.sh
     seq: 1
-  ap-lms1d-3:
-    github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/shutdown.sh
-    stop_script_path: scripts/start.sh
-    validate_script_path: scripts/validate.sh
+  - 
+    name: ap-lms1d-3
+    script_source: https://github.com/ymadem/app_s
+    start_script_path: scripts/app_s_shutdown.sh
+    stop_script_path: scripts/app_s_start.sh
+    validate_script_path: scripts/app_s_validate.sh
     seq: 2
