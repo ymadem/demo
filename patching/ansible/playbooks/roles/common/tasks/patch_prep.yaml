@@ -1,33 +1,41 @@
 ---
-- name: Ensure the directory exists
+- name: create temp directory
   file:
     path: "{{ item }}"
     state: directory
     mode: '0755'
   loop:
-    - /{{ ansible_user }}/temp
-    - /{{ ansible_user }}/company/{{ appname }}
-- name: Clone the repository
-  ansible.builtin.git:
-    repo: '{{ github_app_url }}'
-    dest: /{{ ansible_user }}/temp
-    version: main
-    update: yes
-- name: Copy shutdown and startup scripts to destination directory
-  copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    remote_src: yes
-  loop:
-    - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_shutdown.sh
-      dest: /{{ ansible_user }}/company/{{ appname }}
-    - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_startup.sh
-      dest: /{{ ansible_user }}/company/{{ appname }}
+    - /{{ ansible_user }}/temp/
+    - /{{ ansible_user }}/company/
 
-- name: Set executable permissions for multiple files
+- name: Ensure the directory exists
   file:
-    path: "{{ item }}"
+    path: "/{{ ansible_user }}/company/{{ item }}"
+    state: directory
     mode: '0755'
-  loop:
-    - /{{ ansible_user }}/company/{{ appname }}/{{ appname }}_shutdown.sh
-    - /{{ ansible_user }}/company/{{ appname }}/{{ appname }}_startup.sh
+  with_items: "{{ apps }}"
+
+# - name: Clone the repository
+#   ansible.builtin.git:
+#     repo: '{{{{ appname }}.github_app_url }}'
+#     dest: /{{ ansible_user }}/temp
+#     version: main
+#     update: yes
+# - name: Copy shutdown and startup scripts to destination directory
+#   copy:
+#     src: "{{ item.src }}"
+#     dest: "{{ item.dest }}"
+#     remote_src: yes
+#   loop:
+#     - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_shutdown.sh
+#       dest: /{{ ansible_user }}/company/{{ domain1 }}/{{ appname }}
+#     - src: /{{ ansible_user }}/temp/scripts/{{ appname }}_startup.sh
+#       dest: /{{ ansible_user }}/company/{{ domain2 }}/{{ appname }}
+
+# - name: Set executable permissions for multiple files
+#   file:
+#     path: "{{ item }}"
+#     mode: '0755'
+#   loop:
+#     - /{{ ansible_user }}/company/{{ domain1 }}/{{ appname }}_shutdown.sh
+#     - /{{ ansible_user }}/company/{{ domain2 }}/{{ appname }}_startup.sh
