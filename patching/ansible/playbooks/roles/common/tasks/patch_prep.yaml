@@ -15,6 +15,7 @@
     mode: '0755'
   with_items: "{{ apps }}"
 
+# When app scripts exists in github repo
 - name: Clone the repository
   ansible.builtin.git:
     repo: '{{ item.script_source }}'
@@ -31,6 +32,7 @@
     mode: '0755'
     remote_src: yes
   with_items: "{{ apps }}"
+  when: item.script_source is regex('^http.*')
 
 - name: Copy shutdown scripts to destination directory
   ansible.builtin.copy:
@@ -39,6 +41,7 @@
     mode: '0755'
     remote_src: yes
   with_items: "{{ apps }}"
+  when: item.script_source is regex('^http.*')
 
 - name: Copy validate scripts to destination directory
   ansible.builtin.copy:
@@ -47,3 +50,32 @@
     mode: '0755'
     remote_src: yes
   with_items: "{{ apps }}"
+  when: item.script_source is regex('^http.*')
+
+# When scripts exists only in server but not in github repo.
+- name: Copy startup scripts to destination directory
+  ansible.builtin.copy:
+    src: "{{ item.start_script_path }}"
+    dest: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
+    mode: '0755'
+    remote_src: yes
+  with_items: "{{ apps }}"
+  when: item.script_source is not regex('^http.*')
+
+- name: Copy shutdown scripts to destination directory
+  ansible.builtin.copy:
+    src: "/{{ ansible_user }}/temp/{{ item.name }}/{{ item.stop_script_path }}"
+    dest: "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}"
+    mode: '0755'
+    remote_src: yes
+  with_items: "{{ apps }}"
+  when: item.script_source is not regex('^http.*')
+
+- name: Copy validate scripts to destination directory
+  ansible.builtin.copy:
+    src: "/{{ ansible_user }}/temp/{{ item.name }}/{{ item.validate_script_path }}"
+    dest: "/etc/{{ company_name }}/{{ item.name }}/{{ item.validate_script_path | basename }}"
+    mode: '0755'
+    remote_src: yes
+  with_items: "{{ apps }}"
+  when: item.script_source is not regex('^http.*')

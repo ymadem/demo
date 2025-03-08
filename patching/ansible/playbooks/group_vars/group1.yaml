@@ -6,22 +6,22 @@ company_name: mycompany
 apps:
   -
     name: ap-lms1d-1
-    script_source: https://github.com/ymadem/app_s
-    start_script_path: scripts/app_s_shutdown.sh
-    stop_script_path: scripts/app_s_start.sh
-    validate_script_path: scripts/app_s_validate.sh
+    script_source: local
+    start_script_path: /apps/serviceaccount/domain/ap_lsmls_1/apachectl
+    stop_script_path: /apps/serviceaccount/domain/ap_lsmls_1/apachectl
+    validate_script_path: /apps/serviceaccount/domain/ap_lsmls_1/apachectl
     seq: 1
   - 
     name: ap-lms1d-2
     script_source: https://github.com/ymadem/app_s
-    start_script_path: scripts/app_s_shutdown.sh
-    stop_script_path: scripts/app_s_start.sh
+    start_script_path: scripts/app_s_start.sh
+    stop_script_path: scripts/app_s_stop.sh
     validate_script_path: scripts/app_s_validate.sh
     seq: 1
   - 
     name: ap-lms1d-3
     script_source: https://github.com/ymadem/app_s
-    start_script_path: scripts/app_s_shutdown.sh
-    stop_script_path: scripts/app_s_start.sh
+    start_script_path: scripts/app_s_start.sh
+    stop_script_path: scripts/app_s_stop.sh
     validate_script_path: scripts/app_s_validate.sh
     seq: 2
