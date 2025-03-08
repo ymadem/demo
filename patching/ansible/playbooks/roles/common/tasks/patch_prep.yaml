@@ -64,7 +64,7 @@
 
 - name: Copy shutdown scripts to destination directory
   ansible.builtin.copy:
-    src: "/{{ ansible_user }}/temp/{{ item.name }}/{{ item.stop_script_path }}"
+    src: "{{ item.stop_script_path }}"
     dest: "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}"
     mode: '0755'
     remote_src: yes
@@ -73,7 +73,7 @@
 
 - name: Copy validate scripts to destination directory
   ansible.builtin.copy:
-    src: "/{{ ansible_user }}/temp/{{ item.name }}/{{ item.validate_script_path }}"
+    src: "{{ item.validate_script_path }}"
     dest: "/etc/{{ company_name }}/{{ item.name }}/{{ item.validate_script_path | basename }}"
     mode: '0755'
     remote_src: yes
