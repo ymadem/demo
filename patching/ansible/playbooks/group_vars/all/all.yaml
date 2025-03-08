@@ -6,19 +6,19 @@
 apps:
   ap-lms1d-1:
     github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/{{ appname }}_shutdown.sh
-    stop_script_path: scripts/{{ appname }}_start.sh
-    validate_script_path: scripts/{{ appname }}_validate.sh
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
     seq: 1
   ap-lms1d-2:
     github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/{{ appname }}_shutdown.sh
-    stop_script_path: scripts/{{ appname }}_start.sh
-    validate_script_path: scripts/{{ appname }}_validate.sh
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
     seq: 1
   ap-lms1d-3:
     github_app_url: https://github.com/ymadem/app_s
-    start_script_path: scripts/{{ appname }}_shutdown.sh
-    stop_script_path: scripts/{{ appname }}_start.sh
-    validate_script_path: scripts/{{ appname }}_validate.sh
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
     seq: 2

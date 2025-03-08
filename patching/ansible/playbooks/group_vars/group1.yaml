@@ -1,17 +1,24 @@
 ---
-app1:
-  github_app_url: https://github.com/ymadem/app_s
-  domain1: "{{ domain1 }}"
-  domain2: "{{ domain2 }}"
+# /etc/company/stop-app.sh
+# /apps/serviceaccount/domain/ap_lsmls_1/apachectl
+# apache start
 
-app2:
-  github_app_url: https://github.com/ymadem/app_e
-  domain1: app_e_1
-  domain2: app_e_2
-  seq: 1
-
-app3:
-  github_app_url: https://github.com/ymadem/app_p
-  domain1: app_p_1
-  domain2: app_p_2
-  seq: 2
+apps:
+  ap-lms1d-1:
+    github_app_url: https://github.com/ymadem/app_s
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
+    seq: 1
+  ap-lms1d-2:
+    github_app_url: https://github.com/ymadem/app_s
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
+    seq: 1
+  ap-lms1d-3:
+    github_app_url: https://github.com/ymadem/app_s
+    start_script_path: scripts/shutdown.sh
+    stop_script_path: scripts/start.sh
+    validate_script_path: scripts/validate.sh
+    seq: 2
