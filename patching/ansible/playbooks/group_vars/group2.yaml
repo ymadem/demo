@@ -3,10 +3,14 @@ company_name: mycompany
 apps:
   -
     name: ap-ec-1
-    script_source: local
-    start_script_path: /apps/serviceaccount/domain/ap_ec_1/stop.sh
-    stop_script_path: /apps/serviceaccount/domain/ap_ec_1/start.sh
-    validate_script_path: /apps/serviceaccount/domain/ap_ec_1/validate.sh
+    # script_source: local
+    # start_script_path: /apps/serviceaccount/domain/ap_ec_1/stop.sh
+    # stop_script_path: /apps/serviceaccount/domain/ap_ec_1/start.sh
+    # validate_script_path: /apps/serviceaccount/domain/ap_ec_1/validate.sh
+    script_source: https://github.com/ymadem/app_e
+    start_script_path: scripts/start.sh
+    stop_script_path: scripts/stop.sh
+    validate_script_path: scripts/validate.sh
     seq: 1
   - 
     name: ap-ec-2
