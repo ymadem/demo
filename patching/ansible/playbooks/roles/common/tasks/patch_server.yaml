@@ -1,0 +1,9 @@
+---
+- name : "execution order seq 1"
+  debug:
+    msg: "patch applyed on server: {{ansible_host }}"
+  when: seq is defined and seq == 1
+- name: "execution order seq 1"
+  debug:
+    msg: "patch applyed on server: {{ansible_host }}"
+  when: seq is defined and seq == 2

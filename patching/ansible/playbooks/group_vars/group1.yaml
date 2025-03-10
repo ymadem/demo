@@ -1,7 +1,4 @@
 ---
-# /etc/company/stop-app.sh
-# /apps/serviceaccount/domain/ap_lsmls_1/apachectl
-# apache start
 company_name: mycompany
 apps:
   -
