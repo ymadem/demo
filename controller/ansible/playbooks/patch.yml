@@ -3,6 +3,7 @@
 - name: main playbook
   hosts: all
   become: true
+  serial: 1
   tasks:
     - name: import common projects
       include_role:
