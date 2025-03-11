@@ -7,4 +7,4 @@
   tasks:
     - name: import common controller
       include_role:
-        name: common.controller
+        name: common/controller
