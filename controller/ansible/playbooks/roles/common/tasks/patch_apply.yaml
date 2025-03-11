@@ -1,7 +1,4 @@
 ---
 - name: trigger patch script based on sequence
-  ansible.builtin.debug:
-    msg: "{{ item }}"
-  with_sequence: start=1 end="{{ end_at }}"
-  delegate_to: localhost
+  comman: "echo running patch on: {{ ansible_host }}"
   
