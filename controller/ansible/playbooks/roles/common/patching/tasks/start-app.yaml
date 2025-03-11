@@ -1,10 +1,10 @@
 ---
-- name: Check if the shell script exists
+- name: Check if the app start script exists
   stat:
-    path: /path/to/your/script.sh
+    path: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
   register: script_stat
 
-- name: Execute the shell script if it exists
-  shell: /path/to/your/script.sh
+- name: Execute app start script if it exists
+  shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
   when: script_stat.stat.exists
   become: true
