@@ -1,0 +1,10 @@
+---
+- name: Check if the shell script exists
+  stat:
+    path: /path/to/your/script.sh
+  register: script_stat
+
+- name: Execute the shell script if it exists
+  shell: /path/to/your/script.sh
+  when: script_stat.stat.exists
+  become: true

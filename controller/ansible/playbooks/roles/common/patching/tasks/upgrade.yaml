@@ -1,0 +1,15 @@
+---
+- name: Upgrade the servers for Red Hat 7
+  debug:
+    msg: "upgrade started on on Red Hat 7 server: {{ ansible_host }}"
+  when: ansible_facts['distribution'] == 'RedHat' and ansible_facts['distribution_major_version'] == '7'
+
+- name: Upgrade the servers for Red Hat 8
+  debug:
+    msg: "This task runs only on Red Hat 8"
+  when: ansible_facts['distribution'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8'
+
+- name: Upgrade the servers for Red Hat 9
+  debug:
+    msg: "This task runs only on Red Hat 9"
+  when: ansible_facts['distribution'] == 'RedHat' and ansible_facts['distribution_major_version'] == '9'
