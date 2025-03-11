@@ -1,0 +1,13 @@
+---
+- name: stopping the application service
+  import_tasks: stop-app.yaml
+
+- name: upgrade the servers
+  import_tasks: upgrade.yaml
+
+- name: reboot the servers
+  import_tasks: reboot.yaml
+
+- name: start app on the servers
+  import_tasks: start-app.yaml
+
