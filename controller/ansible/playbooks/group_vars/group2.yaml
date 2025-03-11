@@ -11,18 +11,15 @@ apps:
     start_script_path: scripts/start.sh
     stop_script_path: scripts/stop.sh
     validate_script_path: scripts/validate.sh
-    seq: 1
   - 
     name: ap-ec-2
     script_source: https://github.com/ymadem/app_e
     start_script_path: scripts/start.sh
     stop_script_path: scripts/stop.sh
     validate_script_path: scripts/validate.sh
-    seq: 1
   - 
     name: ap-ec-3
     script_source: https://github.com/ymadem/app_e
     start_script_path: scripts/start.sh
     stop_script_path: scripts/stop.sh
     validate_script_path: scripts/validate.sh
-    seq: 2

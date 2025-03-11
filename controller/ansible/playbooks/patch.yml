@@ -2,7 +2,7 @@
 
 - name: main playbook
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: import common projects
       include_role:
