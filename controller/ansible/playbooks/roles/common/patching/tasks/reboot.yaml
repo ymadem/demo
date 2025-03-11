@@ -11,4 +11,4 @@
 - name: Fail if reboot is required
   fail:
     msg: "Reboot is required on this host."
-    when: reboot_check.rc == 1
+  when: reboot_check.rc == 1

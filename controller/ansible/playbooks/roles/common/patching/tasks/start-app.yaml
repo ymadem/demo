@@ -2,9 +2,11 @@
 - name: Check if the app start script exists
   stat:
     path: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
-  register: script_stat
+  with_items: "{{ apps }}"
+  register: start_script_stat
 
 - name: Execute app start script if it exists
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
-  when: script_stat.stat.exists
+  with_items: "{{ apps }}"
+  when: start_script_stat.stat.exists
   become: true
