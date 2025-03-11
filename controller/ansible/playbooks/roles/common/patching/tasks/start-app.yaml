@@ -12,4 +12,5 @@
 
 - name: executing stop scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
+  with_items: "{{ apps }}"
   when: start_script_status.results
