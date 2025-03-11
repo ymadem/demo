@@ -1,4 +1,4 @@
 ---
 - name: trigger patch script based on sequence
-  comman: "echo running patch on: {{ ansible_host }}"
+  command: "echo running patch on: {{ ansible_host }}"
   
