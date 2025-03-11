@@ -1,12 +1,15 @@
 ---
 - name: Check if the app start script exists
-  stat:
-    path: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
+  shell: |
+    [ -f "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}" ]
   with_items: "{{ apps }}"
-  register: start_script_stat
+  register: start_script_status
 
-- name: Execute app start script if it exists
+- name: executing start scripts
+  debug:
+    msg: "echo app service stopping"
+  when: start_script_status.results
+
+- name: executing stop scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
-  with_items: "{{ apps }}"
-  when: start_script_stat.stat.exists
-  become: true
+  when: start_script_status.results

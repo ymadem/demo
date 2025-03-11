@@ -1,15 +1,17 @@
 ---
 - name: Check if the app stop script exists
-  stat:
-    path: "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}"
+  shell: |
+    [ -f "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}" ]
   with_items: "{{ apps }}"
-  register: stop_script_stat
+  register: stop_script_status
 
-- name: Debug script check result
+- name: executing stop scripts
   debug:
-    msg: "Script check result: {{ stop_script_stat.stdout }}"
+    msg: "echo app service stopping"
+  when: stop_script_status.results
 
-- name: Execute app stop script if it exists
+- name: executing stop scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}"
-  with_items: "{{ apps }}"
-  when: stop_script_stat.stdout == "exists"
+  when: stop_script_status.results
+
+
