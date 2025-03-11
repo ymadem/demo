@@ -5,14 +5,13 @@
   with_items: "{{ apps }}"
   register: stop_script_status
 
-- name: executing stop scripts
-  debug:
-    msg: "echo app service stopping"
-  when: stop_script_status.results
-
-- name: executing stop scripts
+- name: Executing stop scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.stop_script_path | basename }}"
   with_items: "{{ apps }}"
   when: stop_script_status.results
+  register: cmd_stop_output
 
-
+- name: Stop script execute results
+  debug:
+    msg: "{{ item.stdout_lines }}"
+  with_items: "{{ cmd_stop_output.results }}"

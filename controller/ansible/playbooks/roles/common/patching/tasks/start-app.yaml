@@ -5,12 +5,13 @@
   with_items: "{{ apps }}"
   register: start_script_status
 
-- name: executing start scripts
-  debug:
-    msg: "echo app service starting"
-  when: start_script_status.results
-
-- name: executing start scripts
+- name: Executing stop scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
   with_items: "{{ apps }}"
-  when: start_script_status.results
+  when: stop_script_status.results
+  register: cmd_start_output
+
+- name: Start script execute results
+  debug:
+    msg: "{{ item.stdout_lines }}"
+  with_items: "{{ cmd_start_output.results }}"
