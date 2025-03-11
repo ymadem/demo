@@ -1,4 +1,5 @@
 ---
 - name: trigger patch script based on sequence
-  command: "echo running patch on: {{ ansible_host }}"
+  ansible.builtin.debug:
+    msg: "running patch on: {{ ansible_host }}"
   
