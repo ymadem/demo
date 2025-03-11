@@ -5,6 +5,6 @@
   become: true
   serial: 1
   tasks:
-    - name: import common projects
+    - name: import common controller
       include_role:
-        name: common
+        name: common.controller
