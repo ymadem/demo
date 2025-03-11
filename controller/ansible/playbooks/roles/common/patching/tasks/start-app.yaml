@@ -7,10 +7,10 @@
 
 - name: executing start scripts
   debug:
-    msg: "echo app service stopping"
+    msg: "echo app service starting"
   when: start_script_status.results
 
-- name: executing stop scripts
+- name: executing start scripts
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
   with_items: "{{ apps }}"
   when: start_script_status.results
