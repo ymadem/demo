@@ -5,7 +5,7 @@
   with_items: "{{ apps }}"
   register: stop_script_stat
 
-- name: Execute app start script if it exists
+- name: Execute app stop script if it exists
   shell: "/etc/{{ company_name }}/{{ item.name }}/{{ item.start_script_path | basename }}"
   with_items: "{{ apps }}"
   when: stop_script_stat.stat.exists
